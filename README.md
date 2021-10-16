@@ -1,2 +1,2 @@
-# Tan-t-m
+# Tanitim
 Bu bir tanıtım projesidir.
