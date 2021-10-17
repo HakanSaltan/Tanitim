@@ -37,6 +37,13 @@ Route::prefix('admin')->group(function () {
 	Route::post('/sayfalar/guncelleApi', 'AdminController@guncelleApi');
 	Route::post('/sayfalar/silApi', 'AdminController@silApi');
 
-	Route::get('/sayfa/duzenle/{id?}', 'AdminController@duzenle');
+
+	Route::get('/ayarlar', 'AyarlarController@ayarlarIndex');
+	Route::get('/ayarApi', 'AyarlarController@ayarApi');
+	Route::get('/ayarFiltreApi/{status?}', 'AyarlarController@ayarFiltreApi');
+	Route::post('/ayar/ekleApi', 'AyarlarController@ayarEkleApi');
+	Route::post('/ayar/guncelleApi', 'AyarlarController@ayarGuncelleApi');
+	Route::post('/ayar/silApi', 'AyarlarController@ayarSilApi');
+
 });
 

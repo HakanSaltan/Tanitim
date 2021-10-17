@@ -3,48 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\sayfa;
+use App\ayar;
 
-
-class AdminController extends Controller
+class AyarlarController extends Controller
 {
     
     public function __construct()
     {
         $this->middleware('auth');
     }
-    function index()
+    function ayarlarIndex()
     {
-        return view('admin.sayfalar.index');
+        return view('admin.ayarlar.index');
     }
-    function sayfalarApi()
+    function ayarApi()
     {
-        return sayfa::get();
+        return ayar::get();
     }
-    function sayfalarFiltreApi($status=null)
+    function ayarFiltreApi($status=null)
     {
         if($status=="aktif"){
 
-            return sayfa::where('sayfa_durumu','=','aktif')->get();
+            return ayar::where('sayfa_durumu','=','aktif')->get();
         }elseif($status=="pasif"){
 
-            return sayfa::where('sayfa_durumu','=','pasif')->get();
+            return ayar::where('sayfa_durumu','=','pasif')->get();
         }else{
             return '';
         }
     }
 
-    function ekleApi(Request $request)
+    function ayarEkleApi(Request $request)
     {
-        $sayfa = new sayfa();
-        $sayfa->sayfa_basligi = $request->sayfaAdi;
-        $sayfa->sayfa_icerik = $request->sayfaIcerik;
-        $sayfa->sayfa_aciklamasi = $request->sayfaMetaAciklamasi;
-        $sayfa->sayfa_anahtar_kelimeler = $request->sayfaAnahtarKelimeler;
-        $sayfa->sayfa_tipi = $request->sayfaTipi;
-        $sayfa->sayfa_durumu = $request->sayfaDurumu;
-        $sayfa->sayfa_url = $request->sayfaUrl;
-        $sayfa->menude_goster = $request->menudeGoster;
+        $sayfa = new ayar();
+        $sayfa->ayar_anahtari = $request->ayarAnahtari;
+        $sayfa->ayar_degeri= $request->ayarDegeri;
+    
         if($sayfa->save()){
             return ['status'=>true,'message'=>'Başarıyla Kaydedilmiştir','data'=>$request->all()];
         }else{
@@ -53,7 +47,7 @@ class AdminController extends Controller
 
     }
 
-    function guncelleApi(Request $request)
+    function ayarGuncelleApi(Request $request)
     {
         /*$duzenlenecekVeri=json_decode($request->duzenlenecekVeri,true);
         
@@ -64,15 +58,9 @@ class AdminController extends Controller
         $sayfa->sayfa_anahtar_kelimeler = $duzenlenecekVeri['sayfa_anahtar_kelimeler'];
         $sayfa->sayfa_tipi = $duzenlenecekVeri['sayfa_tipi'];
         $sayfa->sayfa_durumu = $duzenlenecekVeri['sayfa_durumu'];*/
-        $sayfa = sayfa::where('id','=',$request->id)->first();
-        $sayfa->sayfa_basligi = $request->sayfaAdi;
-        $sayfa->sayfa_icerik = $request->sayfaIcerik;
-        $sayfa->sayfa_aciklamasi = $request->sayfaMetaAciklamasi;
-        $sayfa->sayfa_anahtar_kelimeler = $request->sayfaAnahtarKelimeler;
-        $sayfa->sayfa_tipi = $request->sayfaTipi;
-        $sayfa->sayfa_durumu = $request->sayfaDurumu;
-        $sayfa->sayfa_url = $request->sayfaUrl;
-        $sayfa->menude_goster = $request->menudeGoster;
+        $sayfa = ayar::where('id','=',$request->id)->first();
+        $sayfa->ayar_anahtari = $request->ayarAnahtari;
+        $sayfa->ayar_degeri= $request->ayarDegeri;
         if($sayfa->save()){
             return ['status'=>true,'message'=>'Başarıyla Kaydedilmiştir','data'=>$request->all()];
         }else{
@@ -80,9 +68,9 @@ class AdminController extends Controller
         }
 
     }
-    function silApi(Request $request){
+    function ayarSilApi(Request $request){
         
-        $sayfa = sayfa::where('id','=',$request->id)->first();
+        $sayfa = ayar::where('id','=',$request->id)->first();
         if($sayfa->delete()){
             return ['status'=>true,'message'=>'Başarıyla Silinmiştir','data'=>$request->all()];
         }else{

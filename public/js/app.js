@@ -1899,6 +1899,243 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ayarlar.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ayarlar.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      adi: 'örnek',
+      ayarAnahtari: '',
+      ayarDegeri: '',
+      ayarlar: [],
+      updateData: []
+    };
+  },
+  computed: {},
+  mounted: function mounted() {
+    this.veriGetir();
+  },
+  methods: {
+    veriGetir: function veriGetir() {
+      var _this = this;
+
+      axios.get('/admin/ayarApi').then(function (response) {
+        _this.ayarlar = response.data;
+      });
+    },
+    modalAc: function modalAc() {
+      this.$modal.show('yeni-ayar-ekle');
+    },
+    ayarEkle: function ayarEkle() {
+      var _this2 = this;
+
+      var formData = new FormData();
+      formData.append('ayarAnahtari', this.ayarAnahtari);
+      formData.append('ayarDegeri', this.ayarDegeri);
+      axios.post('/admin/ayar/ekleApi', formData).then(function (response) {
+        if (response.data.status == true) {
+          Swal.fire(response.data.message, '', 'success');
+
+          _this2.veriGetir();
+        } else {
+          Swal.fire(response.data.message, '', 'error');
+        }
+      });
+    },
+    ayarDuzenle: function ayarDuzenle(duzenlenecekVeri) {
+      this.updateData = duzenlenecekVeri;
+      this.$modal.show('ayar-duzenle'); //alert(duzenlenecekVeri.id)
+    },
+    ayarGuncelle: function ayarGuncelle() {
+      var _this3 = this;
+
+      var formData = new FormData(); //formData.append('duzenlenecekVeri',  JSON.stringify(this.updateData));
+
+      formData.append('id', this.updateData.id);
+      formData.append('ayarAnahtari', this.updateData.ayar_anahtari);
+      formData.append('ayarDegeri', this.updateData.ayar_degeri);
+      axios.post('/admin/ayar/guncelleApi', formData).then(function (response) {
+        if (response.data.status == true) {
+          Swal.fire(response.data.message, '', 'success');
+
+          _this3.veriGetir();
+        } else {
+          Swal.fire(response.data.message, '', 'error');
+        }
+      });
+    },
+    ayarSil: function ayarSil(duzenlenecekVeri) {
+      var _this4 = this;
+
+      //alert(duzenlenecekVeri.id)
+      Swal.fire({
+        title: '"' + duzenlenecekVeri.ayar_anahtari + '" sayfasını silmek istediğinize emin misiniz?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Sayfayı sil',
+        denyButtonText: "Vazge\xE7tim"
+      }).then(function (result) {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          var formData = new FormData();
+          formData.append('id', duzenlenecekVeri.id);
+          axios.post('/admin/ayar/silApi', formData).then(function (response) {
+            if (response.data.status == true) {
+              Swal.fire(response.data.message, '', 'success');
+
+              _this4.veriGetir();
+            } else {
+              Swal.fire(response.data.message, '', 'error');
+            }
+          });
+        } else if (result.isDenied) {
+          Swal.fire('Değişiklik yapılmamıştır', '', 'info');
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/sayfalar.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/sayfalar.vue?vue&type=script&lang=js& ***!
@@ -1908,6 +2145,53 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2133,6 +2417,8 @@ var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/di
       sayfaAnahtarKelimeler: '',
       sayfaDurumu: '',
       sayfaTipi: '',
+      sayfaUrl: '',
+      menudeGoster: '',
       updateDataIcerik: '',
       sayfalar: [],
       updateData: []
@@ -2170,6 +2456,8 @@ var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/di
       formData.append('sayfaAnahtarKelimeler', this.sayfaAnahtarKelimeler);
       formData.append('sayfaDurumu', this.sayfaDurumu);
       formData.append('sayfaTipi', this.sayfaTipi);
+      formData.append('sayfaUrl', this.sayfaUrl);
+      formData.append('menudeGoster', this.menudeGoster);
       axios.post('/admin/sayfalar/ekleApi', formData).then(function (response) {
         if (response.data.status == true) {
           Swal.fire(response.data.message, '', 'success');
@@ -2197,6 +2485,8 @@ var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/di
       formData.append('sayfaAnahtarKelimeler', this.updateData.sayfa_anahtar_kelimeler);
       formData.append('sayfaDurumu', this.updateData.sayfa_durumu);
       formData.append('sayfaTipi', this.updateData.sayfa_tipi);
+      formData.append('sayfaUrl', this.updateData.sayfa_url);
+      formData.append('menudeGoster', this.updateData.menude_goster);
       axios.post('/admin/sayfalar/guncelleApi', formData).then(function (response) {
         if (response.data.status == true) {
           Swal.fire(response.data.message, '', 'success');
@@ -75653,6 +75943,361 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("modal", { attrs: { name: "yeni-ayar-ekle", height: "auto" } }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h1", { staticClass: "display-3" }, [_vm._v("Yeni Ayar Ekle")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ayarAnahtari,
+                        expression: "ayarAnahtari"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Ayar Anahtarı"
+                    },
+                    domProps: { value: _vm.ayarAnahtari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ayarAnahtari = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ayarDegeri,
+                        expression: "ayarDegeri"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Ayar Değeri"
+                    },
+                    domProps: { value: _vm.ayarDegeri },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ayarDegeri = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-default btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.ayarEkle }
+                  },
+                  [_vm._v("Kaydet")]
+                )
+              ])
+            ])
+          ]),
+          _c("br")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("modal", { attrs: { name: "ayar-duzenle", height: "auto" } }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h1", { staticClass: "display-3" }, [
+            _vm._v(
+              '"' + _vm._s(_vm.updateData.ayar_anahtari) + '" Sayfasını Düzenle'
+            )
+          ]),
+          _c("br"),
+          _vm._v(" "),
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.updateData.ayar_anahtari,
+                        expression: "updateData.ayar_anahtari"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Ayar Anahtarı"
+                    },
+                    domProps: { value: _vm.updateData.ayar_anahtari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.updateData,
+                          "ayar_anahtari",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.updateData.ayar_degeri,
+                        expression: "updateData.ayar_degeri"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Ayar Değeri"
+                    },
+                    domProps: { value: _vm.updateData.ayar_degeri },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.updateData,
+                          "ayar_degeri",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-default btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.ayarGuncelle }
+                  },
+                  [_vm._v("Güncelle")]
+                )
+              ])
+            ])
+          ]),
+          _c("br")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-8" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-4" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-default",
+              attrs: { type: "button" },
+              on: { click: _vm.modalAc }
+            },
+            [_vm._v("Yeni Ayar Ekle")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table align-items-center" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.ayarlar, function(ayar) {
+              return _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _c("div", { staticClass: "media align-items-center" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("span", { staticClass: "mb-0 text-sm" }, [
+                        _vm._v(_vm._s(ayar.id))
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "row" } }, [
+                  _c("div", { staticClass: "media align-items-center" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("span", { staticClass: "mb-0 text-sm" }, [
+                        _vm._v(_vm._s(ayar.ayar_anahtari))
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "row" } }, [
+                  _c("div", { staticClass: "media align-items-center" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("span", { staticClass: "mb-0 text-sm" }, [
+                        _vm._v(_vm._s(ayar.ayar_degeri))
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-right" }, [
+                  _c("div", { staticClass: "dropdown" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "dropdown-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.ayarDuzenle(ayar)
+                              }
+                            }
+                          },
+                          [_vm._v("Düzenle")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "dropdown-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.ayarSil(ayar)
+                              }
+                            }
+                          },
+                          [_vm._v("Sil")]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ayar Anahtarı")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ayar Değeri")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ayarlar")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-sm btn-icon-only text-light",
+        attrs: {
+          href: "#",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/sayfalar.vue?vue&type=template&id=5989f87c&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/sayfalar.vue?vue&type=template&id=5989f87c& ***!
@@ -75807,6 +76452,8 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Sayfa Durumu")]),
+                _vm._v(" "),
                 _c(
                   "select",
                   {
@@ -75856,6 +76503,92 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sayfaUrl,
+                        expression: "sayfaUrl"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Sayfa Url"
+                    },
+                    domProps: { value: _vm.sayfaUrl },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.sayfaUrl = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Menü Durumu")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.menudeGoster,
+                        expression: "menudeGoster"
+                      }
+                    ],
+                    staticClass: "custom-control form-select btn-block",
+                    attrs: { "aria-label": "Default select example" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.menudeGoster = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { selected: "" } }, [
+                      _vm._v("Menüde Gösterilsin")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "aktif" } }, [
+                      _vm._v("Evet")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "pasif" } }, [
+                      _vm._v("Hayır")
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Sayfa Tipi")]),
+                _vm._v(" "),
                 _c(
                   "select",
                   {
@@ -76069,6 +76802,98 @@ var render = function() {
                 ])
               ])
             ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.updateData.sayfa_url,
+                        expression: "updateData.sayfa_url"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "exampleFormControlInput1",
+                      placeholder: "Sayfa Url"
+                    },
+                    domProps: { value: _vm.updateData.sayfa_url },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.updateData,
+                          "sayfa_url",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Menü Durumu")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.updateData.menude_goster,
+                        expression: "updateData.menude_goster"
+                      }
+                    ],
+                    staticClass: "custom-control form-select btn-block",
+                    attrs: { "aria-label": "Default select example" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.updateData,
+                          "menude_goster",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { selected: "" } }, [
+                      _vm._v("Menüde Gösterilsin")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "aktif" } }, [
+                      _vm._v("Evet")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "pasif" } }, [
+                      _vm._v("Hayır")
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12" }, [
@@ -76286,6 +77111,16 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _c("th", { attrs: { scope: "row" } }, [
+                  _c("div", { staticClass: "media align-items-center" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("span", { staticClass: "mb-0 text-sm" }, [
+                        _vm._v(_vm._s(sayfa.sayfa_url))
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
                 _c("td", [
                   sayfa.sayfa_durumu == "aktif"
                     ? _c("span", { staticClass: "badge badge-dot mr-4" }, [
@@ -76386,6 +77221,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Sayfa Adı")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Sayfa Url")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Durumu")]),
         _vm._v(" "),
@@ -88717,9 +89554,79 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MO
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tinymce', vue_tinymce_editor__WEBPACK_IMPORTED_MODULE_3__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('sayfalar', __webpack_require__(/*! ./components/sayfalar.vue */ "./resources/js/components/sayfalar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ayarlar', __webpack_require__(/*! ./components/ayarlar.vue */ "./resources/js/components/ayarlar.vue")["default"]);
 var vueApp = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/ayarlar.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/ayarlar.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ayarlar.vue?vue&type=template&id=7a896bce& */ "./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce&");
+/* harmony import */ var _ayarlar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ayarlar.vue?vue&type=script&lang=js& */ "./resources/js/components/ayarlar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ayarlar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ayarlar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ayarlar.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/ayarlar.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ayarlar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ayarlar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ayarlar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ayarlar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ayarlar.vue?vue&type=template&id=7a896bce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ayarlar.vue?vue&type=template&id=7a896bce&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ayarlar_vue_vue_type_template_id_7a896bce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

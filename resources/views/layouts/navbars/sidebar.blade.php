@@ -69,10 +69,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{URL::Asset('admin')}}">
                         <i class="ni ni-circle-08 text-pink"></i> {{ __('Sayfalar') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{URL::Asset('admin/ayarlar')}}">
+                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Ayarlar') }}
+                    </a>
+                </li>
+
+  
             </ul>
            
         </div>
