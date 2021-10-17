@@ -32,7 +32,10 @@ Route::prefix('admin')->group(function () {
 	Route::get('/', 'AdminController@index');
 	Route::get('/sayfalar', 'AdminController@index');
 	Route::get('/sayfalarApi', 'AdminController@sayfalarApi');
+	Route::get('/sayfalarFiltreApi/{status?}', 'AdminController@sayfalarFiltreApi');
 	Route::post('/sayfalar/ekleApi', 'AdminController@ekleApi');
+	Route::post('/sayfalar/guncelleApi', 'AdminController@guncelleApi');
+	Route::post('/sayfalar/silApi', 'AdminController@silApi');
 
 	Route::get('/sayfa/duzenle/{id?}', 'AdminController@duzenle');
 });

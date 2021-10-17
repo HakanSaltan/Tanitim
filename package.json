@@ -23,7 +23,9 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "sweetalert2": "^11.1.9",
         "vue": "^2.6.14",
-        "vue-js-modal": "^2.0.1"
+        "vue-js-modal": "^2.0.1",
+        "vue-tinymce-editor": "^1.6.2"
     }
 }
