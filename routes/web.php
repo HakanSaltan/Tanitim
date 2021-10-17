@@ -28,3 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+Route::prefix('admin')->group(function () {
+	Route::get('/', 'AdminController@index');
+	Route::get('/sayfalar', 'AdminController@index');
+	Route::get('/sayfalarApi', 'AdminController@sayfalarApi');
+	Route::post('/sayfalar/ekleApi', 'AdminController@ekleApi');
+
+	Route::get('/sayfa/duzenle/{id?}', 'AdminController@duzenle');
+});
+
