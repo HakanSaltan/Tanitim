@@ -12,15 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/menulerGetir', 'SayfalarController@menuler');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
@@ -47,3 +44,4 @@ Route::prefix('admin')->group(function () {
 
 });
 
+Route::get('/{deger?}', 'SayfalarController@index');

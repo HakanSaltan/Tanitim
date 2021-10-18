@@ -25,31 +25,15 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('home') }}">
+                <li class="nav-item" v-for="menu in menuler" v-if="menu.menude_goster == 'aktif' ">
+                    <a class="nav-link nav-link-icon" :href="menu.sayfa_url">
                         <i class="ni ni-planet"></i>
-                        <span class="nav-link-inner--text">{{ __('Dashboard') }}</span>
+                        <span class="nav-link-inner--text" v-text="menu.sayfa_basligi"></span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('register') }}">
-                        <i class="ni ni-circle-08"></i>
-                        <span class="nav-link-inner--text">{{ __('Register') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('login') }}">
-                        <i class="ni ni-key-25"></i>
-                        <span class="nav-link-inner--text">{{ __('Login') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('profile.edit') }}">
-                        <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('Profile') }}</span>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
 </nav>
+

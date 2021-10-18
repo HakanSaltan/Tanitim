@@ -22,7 +22,7 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Hoşgeldiniz!') }}</h6>
                     </div>
-                  
+
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -79,9 +79,10 @@
                     </a>
                 </li>
 
-  
+
             </ul>
-           
+
         </div>
     </div>
 </nav>
+

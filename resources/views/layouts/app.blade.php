@@ -17,6 +17,11 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-content-loader@0.2.3/dist/vue-content-loader.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue2-editor@2.6.6/dist/vue2-editor.min.js"></script>
+
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -25,8 +30,8 @@
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-        
-        <div class="main-content">
+
+        <div class="main-content" id="app">
             @include('layouts.navbars.navbar')
             @yield('content')
         </div>
@@ -37,11 +42,36 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
-        @stack('js')
-        
+
+
+
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-        
+        <script>
+            var mixin ={
+                el:'#app',
+                data: function(){
+                     return{
+                        menuler: [],
+                     }
+                },
+                methods: {
+                    getMenuler: function () {
+                        axios.get('{{URL::Asset('/menulerGetir')}}')
+                            .then(response => {
+                                this.menuler = response.data.data;
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+                    }
+                },
+                mounted: function () {
+                    this.getMenuler();
+                }
+            }
+        </script>
+@yield('js')
+
     </body>
 </html>
